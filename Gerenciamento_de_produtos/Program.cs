@@ -9,8 +9,7 @@ namespace Gerenciamento_de_produtos
         static void Main(string[] args)
         {
             List <Produto> produto = new List<Produto>();
-            Produto_Usado produto_Usado = new Produto_Usado();
-            Produto_Importado produto_Importado = new Produto_Importado();
+        ;
 
             Console.Write("Entre com o número de produtos : ");
             int numeroProduct = int.Parse(Console.ReadLine());
@@ -42,9 +41,9 @@ namespace Gerenciamento_de_produtos
                         Console.Write("Data de Fabricação (DD/MM/AAAA) : ");
                         DateTime data_Fabricacao = DateTime.Parse(Console.ReadLine());
 
-                        //produto.Add(new Produto(nome_Produto_Usado, preco_Produto_Usado, produto_Usado));
+                        produto.Add(new Produto_Usado(nome_Produto_Usado, preco_Produto_Usado, data_Fabricacao));
 
-                        produto_Usado = new Produto_Usado(data_Fabricacao, nome_Produto_Usado, preco_Produto_Usado);
+                       
                         
                         break;
 
@@ -56,7 +55,7 @@ namespace Gerenciamento_de_produtos
                         Console.Write("Taxa da alfândega : ");
                         double taxa = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-                        produto.Add(new Produto(nome_Produto_Importado, preco_Produto_Importado, produto_Importado));
+                        produto.Add(new Produto_Importado(nome_Produto_Importado, preco_Produto_Importado, taxa));
                         break;
 
 
@@ -64,13 +63,12 @@ namespace Gerenciamento_de_produtos
             }
             Console.WriteLine();
             Console.WriteLine("Preço das etiquetas");
-
-            foreach(Produto produto1 in produto)
+            foreach(Produto produtos in produto)  // (Tipo variável in lista)
             {
-                Console.Write(produto1);
-            }
+                Console.WriteLine(produtos.Etiqueta_Produto());
 
-           
+            }
+       
 
         }
     }
